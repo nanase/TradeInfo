@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TradeInfo</title>
+    <link href="style/index.css" rel="stylesheet" type="text/css" />
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+    <script src="script/jquery-2.0.3.min.js"></script>
+    <script src="script/linq.min.js"></script>
+    <script>
+      var data;
+						var popuping = false;
+						var item_num = 0;
+						var item_array = new Array();
+						
+						var enchants = new Array();
+						
+						enchants[0] = "ダメージ軽減";
+						enchants[1] = "火炎耐性";
+						enchants[2] = "落下耐性";
+						enchants[3] = "爆発耐性";
+						enchants[4] = "飛び道具耐性";
+						enchants[5] = "水中呼吸";
+						enchants[6] = "水中採掘";
+						enchants[7] = "棘の鎧";
+						enchants[16] = "ダメージ増加";
+						enchants[17] = "アンデッド特効";
+						enchants[18] = "	虫特効";
+						enchants[19] = "ノックバック";
+						enchants[20] = "火属性";
+						enchants[21] = "ドロップ増加";
+						enchants[32] =	"効率強化";
+						enchants[33] = "シルクタッチ";
+						enchants[34] = "耐久力";
+						enchants[35] = "幸運";
+						enchants[48] = "ダメージ増加";
+						enchants[49] = "パンチ";
+						enchants[50] = "フレイム";
+						enchants[51] = "	無限";
+
+						function format(f) {
+								return a = arguments, f.replace(/\{(\d)\}/g, function(m, c) {
+										return a[parseInt(c) + 1];
+								});
+						}
+						
+						function getIconName(name){
+								return name.toLowerCase().replace("'", '').replace(' ', '_').replace(' ', '_');
+						}
+
+						function createItem(item) {		
+								if(item == null)
+								{
+										return '<div class="item"></div>';	
+								}
+								else{										
+										var res = format('<div id="item_{5}" class="item{3}" style="background-image: url(style/{1}/{0}.png)">{2}{4}</div>',
+										getIconName(item.n),
+										(item.i < 256)?'blocks':'items',
+										(item.c == 1) ? '' : item.c,
+										(item.e == null) ? '' : ' item-enchant',
+										(item.e == null) ? '' : 'E',
+										item_num);
+										
+										item_array[item_num] = item;
+										item_num++;
+										
+										return res;
+								}
+						}
+						
+						function getVillageStats(i) {
+								return [format('<b>人口: {0}</b> (大人: {1}, 子供: {2})<br />', Enumerable.From(data.r).Count('r => r.v == ' + i), Enumerable.From(data.r).Count('r => r.a && r.v == ' + i), Enumerable.From(data.r).Count('r => !r.a && r.v == ' + i)),
+										format('<b>取引可能: {0}</b><br />', Enumerable.From(data.r).Count('r => r.a && r.r != null && r.v == ' + i)),
+										format('農民: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 0 && r.v == ' + i)),
+										format('司書: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 1 && r.v == ' + i)),
+										format('司祭: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 2 && r.v == ' + i)),
+										format('鍛冶屋: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 3 && r.v == ' + i)),
+										format('肉屋: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 4 && r.v == ' + i))
+								].join('');
+						}
+						
+						function getItemDescript(item) {
+								var res = format('<b><i>{0}</i></b>{1} {2}<br />', item.n, item.d == 0 ? '' : '/' + item.d, item.c == 1 ? '' : 'x' + item.c);
+								
+								if(item.e != null)
+								{
+										for (var i = 0; i < item.e.length; i++) {
+												res += format('{0} Lv.{1}', enchants[item.e[i].i], item.e[i].l);
+										}
+								}
+				
+								return res;
+						}
+						
+						function create(){
+								$('.content').children().remove();
+								for (var i = 0; i < data.v.length; i++) {
+										var v = data.v[i];
+										{
+												var pos = format('({0}, {1}, {2})', v.c[0], v.c[1], v.c[2]);
+												var distance = Math.sqrt(Math.pow(v.c[0] - data.s[0], 2.0) + Math.pow(v.c[1] - data.s[1], 2.0) + Math.pow(v.c[2] - data.s[2], 2.0));
+												var popular = Enumerable.From(data.r).Count('r => r.v == ' + i);
+												var adult = Enumerable.From(data.r).Count('r => r.a && r.v == ' + i);
+												var adult_p = (adult / popular) * 100;
+												
+												$('.content').append(	[format('<table id="village_{0}">', i),
+														format('<tr><th>村 {0}</th><td>座標: {1}</td><td>距離: {2}m</td></tr>', v.i, pos, Math.round(distance * 10) / 10),
+														format('<tr><td colspan="3">{0} <div class="popgraph"><div class="popgraph_adult" style="width:{1}%"></div><div class="popgraph_child" style="width:{2}%"></div></div></td></tr>', popular, adult_p, 100 - adult_p),
+														'</table>'].join('')	);
+												
+												setPopup($(format('#village_{0} tr div.popgraph', i)), getVillageStats(i));
+										}
+										
+										var villager = Enumerable.From(data.r).Where('v => v.a && v.r != null && v.v == ' + i).ToArray();
+										
+										var list = '<table class="connect">';
+										
+										for (var j = 0; j < villager.length; j++) {
+												var r = villager[j];												
+																							
+												list += '<tr>';														
+												list += format('<td class="profession profession_{0}"></td>', r.p);
+														
+												for (var k = 0; k < r.r.length; k++) {
+														var t = r.r[k];			
+														list += format('<td{0}>{1}{2}<div class="arrow">{4} / {5}</div>{3}</td>',
+														(t.u == t.m) ? ' class="uses_max"' : '',
+														createItem(t.a),
+														createItem(t.b),
+														createItem(t.s),
+														t.u,
+														t.m);
+												}
+												
+												list += '</tr>';												
+										}
+										
+										$('.content').append(list + '</table>');							
+								}
+								
+								setPopup($('.profession_0'), '職業: 農民');
+								setPopup($('.profession_1'), '職業: 司書');
+								setPopup($('.profession_2'), '職業: 司祭');
+								setPopup($('.profession_3'), '職業: 鍛冶屋');
+								setPopup($('.profession_4'), '職業: 肉屋');
+								
+								for (var i = 0; i < item_num; i++) {
+										setPopup($('#item_'+i), getItemDescript(item_array[i]));
+								}
+						}
+						
+						function setPopup(target, text) {
+								target.hover(function(){
+										$('.popup').stop(true, true).show().html(text);
+										popuping = true;
+								}, function(){
+										$('.popup').stop(true, true).fadeOut(100);
+										popuping = false;
+								});
+						}
+
+						$(function() {
+								$('#updateTime').text("更新中...");
+								$.getJSON("output.json", function(source) {
+										data = source;
+										item_num = 0;
+										item_array = new Array();
+										$('#updateTime').text(new Date(source.t).toLocaleTimeString());
+										create();										
+										$('*').mousemove(function(e){ if(popuping) $('.popup').css({left: e.pageX + 16 + 'px', top: e.pageY + 16 + 'px'}) });
+								});
+						});
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <span class="logo">TradeInfo</span>
+      <span class="version">v0.1-dev</span>
+      <span class="menu image-clock" id="updateTime"></span>
+      <a class="menu image-info" href="javascript:void(0);">このページについて</a>
+    </div>
+    <div class="content">
+    </div>
+				<div class="popup">
+    </div>
+  </body>
+</html>
