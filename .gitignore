@@ -1,10 +1,13 @@
+project_viewer/output.json
+
 #ant specific
 dist/
 build/
  
 #netbeans specific
 core
-nbproject/*
+nbproject/
+.settings/
 !nbproject/project.properties
 !nbproject/project.xml
  
