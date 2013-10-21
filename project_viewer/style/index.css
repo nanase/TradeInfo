@@ -105,7 +105,7 @@ table {
   background-color: rgba(255,255,255,0.75);
   border: 1px #aaa solid;
   margin: 20px;
-		margin-bottom: 0px;
+  margin-bottom: 0px;
   border-spacing: 0px;
   border-collapse: collapse;
   box-shadow: 0 0 2px #888;
@@ -117,10 +117,10 @@ table td, table th {
 }
 
 table.connect {
-		background-color: transparent;
-		border: none;
-		box-shadow: none;
-		margin: -1px 0 20px 30px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  margin: -1px 0 20px 30px;
 }
 
 table.connect td, table.connect th {
@@ -128,98 +128,98 @@ table.connect td, table.connect th {
 }
 
 .popgraph {
-		display: inline-block;
-		height: 0.8em;
-		line-height: 0.8em;
-		width: 400px;
+  display: inline-block;
+  height: 0.8em;
+  line-height: 0.8em;
+  width: 400px;
 }
 
 .popgraph_adult {
-		display: inline-block;
-		height: 100%;
-		background-color: #ffcc99;
+  display: inline-block;
+  height: 100%;
+  background-color: #ffcc99;
 }
 
 .popgraph_child {
-		display: inline-block;
-		height: 100%;
-		background-color: #ddff99;
+  display: inline-block;
+  height: 100%;
+  background-color: #ddff99;
 }
 
 .profession {
-		width: 4px;
+  width: 4px;
 }
 
 .profession_0 {
-		background-color: #c28659;
+  background-color: #c28659;
 }
 
 .profession_1 {
-		background-color: white;
+  background-color: white;
 }
 
 .profession_2 {
-		background-color: #d69ecc;
+  background-color: #d69ecc;
 }
 
 .profession_3 {
-		background-color: #666;
+  background-color: #666;
 }
 
 .profession_4 {
-		background-color: #bbb;
+  background-color: #bbb;
 }
 
 .profession_5 {
-		background-color: green;
+  background-color: green;
 }
 
 .uses_max {
-		background-color: #fdd;
+  background-color: #fdd;
 }
 
 /* ----- item ----- */
 .item {
-		display: inline-block;
-		width: 32px;
-		height: 32px;
-		padding: 0;
-		background-repeat: no-repeat;
-		background-size: 32px 32px;
-		background-position: left top;
-		display: inline-block;
-		font-size: 110%;
-		font-weight: bold;
-		color: white;
-		text-align: right;
-		text-shadow: -1px -1px 0 black, 1px -1px 0 black, 1px 1px 0 black, -1px 1px 0 black;
-		line-height: 48px;
-		image-rendering: optimizeSpeed;
-		image-rendering: -moz-crisp-edges;
-		-ms-interpolation-mode: nearest-neighbor;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  background-position: left top;
+  display: inline-block;
+  font-size: 110%;
+  font-weight: bold;
+  color: white;
+  text-align: right;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, 1px 1px 0 black, -1px 1px 0 black;
+  line-height: 48px;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 .item-enchant {
-		background-color: #f9d9f2 ;
+  background-color: #f9d9f2 ;
 }
 .arrow {
-		display: inline-block;
-		min-width: 32px;
-		height: 32px;
-		margin: 0 2px;
-		background-repeat: no-repeat;
-		background-position: top center;
-		background-image: url('arrow.png');
-		font-size: 80%;
-		line-height: 48px;
-		text-align: center;
+  display: inline-block;
+  min-width: 32px;
+  height: 32px;
+  margin: 0 2px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-image: url('arrow.png');
+  font-size: 80%;
+  line-height: 48px;
+  text-align: center;
 }
 
 /* ----- popup ----- */
 .popup {
-		display: none;
-		position: absolute;
-		z-index: 100;
-		border: 1px solid grey;
-		background-color: white;
-		padding: 5px;
+  display: none;
+  position: absolute;
+  z-index: 100;
+  border: 1px solid grey;
+  background-color: white;
+  padding: 5px;
 }
