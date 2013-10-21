@@ -57,7 +57,7 @@
 
       function getItemDescript(item) {
         return format('<b><i>{0}</i></b> {1}<br />', item.n, (item.c === 1) ? '' : 'x' + item.c) +
-                (item.e) ? Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />') : '';
+                ((item.e) ? Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />') : '');
       }
 
       function create() {
