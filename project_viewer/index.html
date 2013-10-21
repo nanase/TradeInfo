@@ -56,16 +56,8 @@
       }
 
       function getItemDescript(item) {
-        var res = format('<b><i>{0}</i></b>{1} {2}<br />', item.n, item.d === 0 ? '' : '/' + item.d, item.c === 1 ? '' : 'x' + item.c);
-
-        if (item.e)
-        {
-          for (var i = 0; i < item.e.length; i++) {
-            res += format('{0} Lv.{1}', enchants[item.e[i].i], item.e[i].l);
-          }
-        }
-
-        return res;
+        return format('<b><i>{0}</i></b> {1}<br />', item.n, (item.c === 1) ? '' : 'x' + item.c) +
+                (item.e) ? Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />') : '';
       }
 
       function create() {
