@@ -20,8 +20,9 @@
         });
       }
 
-      function getImageName(name) {
-        return name.toLowerCase().replace("'", '').replace(' ', '_').replace(' ', '_');
+      function getIconPath(name, isBlock) {
+        name = name.toLowerCase().replace("'", '').replace(' ', '_').replace(' ', '_');
+        return format('style/{0}/{1}.png', (isBlock) ? 'blocks' : 'items', name);
       }
 
       function createItem(item) {
@@ -30,18 +31,14 @@
           return '<div class="item"></div>';
         }
         else {
-          var res = format('<div id="item_{5}" class="item{3}" style="background-image: url(style/{1}/{0}.png)">{2}{4}</div>',
-                  getImageName(item.n),
-                  (item.i < 256) ? 'blocks' : 'items',
-                  (item.c === 1) ? '' : item.c,
-                  (item.e) ? ' item-enchant' : '',
-                  (item.e) ? 'E' : '',
-                  item_num);
-
           item_array[item_num] = item;
-          item_num++;
 
-          return res;
+          return format('<div id="item_{0}" class="item{1}" style="background-image: url({2})">{3}{4}</div>',
+                  item_num++,
+                  (item.e) ? ' item-enchant' : '',
+                  getIconPath(item.n, (item.i < 256)),
+                  (item.c === 1) ? '' : item.c,
+                  (item.e) ? 'E' : '');
         }
       }
 
