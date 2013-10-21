@@ -25,7 +25,7 @@
       }
 
       function createItem(item) {
-        if (item === null)
+        if (!item)
         {
           return '<div class="item"></div>';
         }
@@ -34,8 +34,8 @@
                   getImageName(item.n),
                   (item.i < 256) ? 'blocks' : 'items',
                   (item.c === 1) ? '' : item.c,
-                  (item.e === null) ? '' : ' item-enchant',
-                  (item.e === null) ? '' : 'E',
+                  (item.e) ? ' item-enchant' : '',
+                  (item.e) ? 'E' : '',
                   item_num);
 
           item_array[item_num] = item;
@@ -59,7 +59,7 @@
       function getItemDescript(item) {
         var res = format('<b><i>{0}</i></b>{1} {2}<br />', item.n, item.d === 0 ? '' : '/' + item.d, item.c === 1 ? '' : 'x' + item.c);
 
-        if (item.e !== null)
+        if (item.e)
         {
           for (var i = 0; i < item.e.length; i++) {
             res += format('{0} Lv.{1}', enchants[item.e[i].i], item.e[i].l);
