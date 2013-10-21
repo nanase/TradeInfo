@@ -46,14 +46,16 @@
       }
 
       function getVillageStats(i) {
-        return [format('<b>人口: {0}</b> (大人: {1}, 子供: {2})<br />', Enumerable.From(data.r).Count('r => r.v == ' + i), Enumerable.From(data.r).Count('r => r.a && r.v == ' + i), Enumerable.From(data.r).Count('r => !r.a && r.v == ' + i)),
-          format('<b>取引可能: {0}</b><br />', Enumerable.From(data.r).Count('r => r.a && r.r != null && r.v == ' + i)),
-          format('農民: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 0 && r.v == ' + i)),
-          format('司書: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 1 && r.v == ' + i)),
-          format('司祭: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 2 && r.v == ' + i)),
-          format('鍛冶屋: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 3 && r.v == ' + i)),
-          format('肉屋: {0}<br />', Enumerable.From(data.r).Count('r => r.a && r.p == 4 && r.v == ' + i))
-        ].join('');
+        var villager = Enumerable.From(data.r).Where('r => r.v == ' + i);
+        var count = function(cond) {
+          return villager.Count('r => ' + cond);
+        };
+
+        return format('<b>人口: {0}</b> (大人: {1}, 子供: {2})<br /><b>取引可能: {3}</b><br />\n\
+農民: {4}<br />司書: {5}<br />司祭: {6}<br />鍛冶屋: {7}<br />肉屋: {8}',
+                villager.Count(), count('r.a'), count('!r.a'), count('r.a && r.r'),
+                count('r.a && r.p === 0'), count('r.a && r.p === 1'), count('r.a && r.p === 2'),
+                count('r.a && r.p === 3'), count('r.a && r.p === 4'));
       }
 
       function getItemDescript(item) {
