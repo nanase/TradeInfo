@@ -204,7 +204,7 @@ table.connect td, table.connect th {
 }
 .arrow {
   display: inline-block;
-  min-width: 32px;
+  width: 40px;  
   height: 32px;
   margin: 0 2px;
   background-repeat: no-repeat;
@@ -213,6 +213,7 @@ table.connect td, table.connect th {
   font-size: 80%;
   line-height: 48px;
   text-align: center;
+  overflow: visible;
 }
 
 /* ----- popup ----- */
