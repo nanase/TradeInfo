@@ -60,13 +60,20 @@
                 ((item.e) ? Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />') : '');
       }
 
+      function getDistance(a, b) {
+        return Math.sqrt(Math.pow(a[0] - b[0], 2.0) + Math.pow(a[1] - b[1], 2.0) + Math.pow(a[2] - b[2], 2.0));
+      }
+
       function create() {
         $('.content').children().remove();
-        for (var i = 0; i < data.v.length; i++) {
-          var v = data.v[i];
+
+        var villages = Enumerable.From(data.v).OrderBy('v => getDistance(v.c, data.s)').ToArray();
+
+        for (var i = 0; i < villages.length; i++) {
+          var v = villages[i];
           {
             var pos = format('({0}, {1}, {2})', v.c[0], v.c[1], v.c[2]);
-            var distance = Math.sqrt(Math.pow(v.c[0] - data.s[0], 2.0) + Math.pow(v.c[1] - data.s[1], 2.0) + Math.pow(v.c[2] - data.s[2], 2.0));
+            var distance = getDistance(v.c, data.s);
             var popular = Enumerable.From(v.r).Count();
             var adult = Enumerable.From(v.r).Count('r => r.a');
             var adult_p = (adult / popular) * 100;
