@@ -82,23 +82,40 @@ a.menu:hover {
   padding: 10px;
 }
 h1 {
-  box-shadow: 0 0 4px gray;
   width: 320px;
-  border: 1px #eee solid;
-  padding: 2px 2px 2px 22px;
+  padding: 2px;
   margin: 4px;
   font-weight: bold;
-  font-size: 110%;
+  font-size: 120%;
   background-position: 2px center;
   background-repeat: no-repeat;
   background-size: 16px 16px;
 }
 
 h2 {
-  border-bottom: 1px #888 solid;
   padding: 2px;
   margin: 10px 10px 0 10px;
   display: inline-block;
+}
+p {
+  margin-left: 20px;
+}
+
+dl {
+  margin-left: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 1em;
+}
+
+pre {
+  margin-left: 20px;
+  font-family: monospace;
 }
 
 table {

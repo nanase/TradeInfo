@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TradeInfoについて</title>
+    <link href="style/index.css" rel="stylesheet" type="text/css" />
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body style="margin: 20px">
+    <span class="logo">TradeInfo</span>
+    <p>
+      TradeInfo は村人の取引状況を抽出し、閲覧する Bukkit プラグインです。
+    </p>
+    <h2>利用方法</h2>
+    <p>
+      プラグインを導入し、一定間隔おきにプレイヤーの周辺の村を探索します (初期値では 5 分)。村が存在すると、村の情報を抽出します。更新されるのは、近くに存在する村の情報のみです。<br />
+      閲覧画面では村人を 1行として取引の内容を表示します。各セルでは 売りアイテム、買いアイテム、取引回数 が表示されています。セルが赤くなったものは最大取引回数に達してそれ以上取引ができないことを表しています。<br />
+      アイテムは数量が数字で表示され、さらにエンチャントについては「E」と表示されます。エンチャントの内容についてはアイテムアイコンをポイントすることで詳細を表示できます。
+    </p>
+    <h2>用語について</h2>
+    <dl>
+      <dt>座標</dt>
+      <dd>
+        村の中心座標です。それぞれ (X, Y, Z) を表します。この座標は村の存在判定に用いられるもので、変動する場合があります。
+      </dd>
+      <dt>距離</dt>
+      <dd>
+        スポーン地点から村の中心座標までの距離です。
+      </dd>
+      <dt>半径</dt>
+      <dd>
+        村の大きさを表す半径です。中心座標と半径を用いて村人の判定をしています。
+      </dd>
+      <dt>家屋</dt>
+      <dd>
+        村に存在する家屋 (ドアの数) です。ある条件を満たした場合のみドアであると判定されます。状況により、家屋数は大きく変動します。また、実際のドアの数と一致するとは限りません。
+      </dd>
+      <dt>推定人口</dt>
+      <dd>
+        村の推定の人口です。「推定」とは、繁殖時に用いられる村人のおおよその人口を意味し、実際に存在する村人の人口とは異なります。
+      </dd>
+      <dt>繁殖</dt>
+      <dd>
+        家屋と推定人口による繁殖の可否を表します。村ではドアの数の 35% と <i>大人の</i>村人 の数が同数になるまで繁殖が継続します。
+      </dd>
+      <dt>取引可能</dt>
+      <dd>
+        取引可能な村人の人口を意味します。取引可能な村人とは以下の条件を全て満たした村人を意味します。
+        <ul>
+          <li>大人である</li>
+          <li>村の範囲内に存在している</li>
+          <li>一回でも取引ダイアログを表示された</li>
+        </ul>
+      </dd>
+      <dt>職業</dt>
+      <dd>
+        村人の職業です。村人は 農夫、司書、司祭、鍛冶屋、肉屋 の何れかの職業に就きます。職業によって取引できる内容は異なります。
+      </dd>
+      <dt>取引回数</dt>
+      <dd>
+        村人と同じ商品を取引できる回数です。ゲーム中では表示されません。右向きの矢印の下に表示され、<i>取引回数</i> / <i>最大取引回数</i> の形式で表示されます。取引は最大回数に達することでそれ以上の取引ができなくなります。ただし、ある条件を満たすと最大回数に達している取引に限り、最大回数が増加し、再び取引可能となります。
+      </dd>
+    </dl>
+    <h2>補足</h2>
+    <ul>
+      <li>このプラグインではプレイヤーがログインしていない場合は情報の収集を行いません。</li>
+      <li>このプラグインでは村の情報を改変する処理は行なっていません。また、表示内容については不安定な場合があります。</li>
+    </ul>
+    <h2>著作権</h2>
+    <p>
+      このプラグインは表示部分に <a href="http://p.yusukekamiyamane.com/" target="_blank">Fugue Icons</a> を使用しております。ライセンス: <a href="http://creativecommons.org/licenses/by/3.0/deed.ja" target="_blank">CC BY 3.0</a>
+    </p>
+    <pre>Fugue Icons
+
+(C) 2013 Yusuke Kamiyamane. All rights reserved.
+
+These icons are licensed under a Creative Commons
+Attribution 3.0 License.
+&lt;http://creativecommons.org/licenses/by/3.0/&gt;
+    </pre>
+    <h2>開発</h2>
+    <p>
+      開発者: 七瀬朋奈 (<a href="http://nanase.cc/" target="_blank">http://nanase.cc/</a>)<br />
+      リポジトリ: <a href="https://github.com/nanase/TradeInfo" target="_blank">GitHub</a>
+    </p>
+  </body>
+</html>
