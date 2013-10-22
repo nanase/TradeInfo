@@ -63,6 +63,13 @@ function getPopgraph(village) {
     '</div></td></tr>'].join(''), popular, adult_p, 100 - adult_p);
 }
 
+function getCoordinate(village) {
+  var x = village.c[0], y = village.c[1], z = village.c[2];
+  return format('{3}({0}, {1}, {2}){4}', x, y, z,
+    (dynmap_addr) ? format('<a href="{0}&x={1}&y={2}&z={3}" target="_blank">', dynmap_addr, x, y, z) : '',
+    (dynmap_addr) ? '</a>' : '');
+}
+
 function create() {
   $('.content').children().remove();
   spawn = data.s;
@@ -70,7 +77,7 @@ function create() {
   for (var i = 0; i < villages.length; i++) {
     var v = villages[i];
     {
-      var pos = format('({0}, {1}, {2})', v.c[0], v.c[1], v.c[2]);
+      var pos = getCoordinate(v);
       var distance = Math.round(getDistance(v.c, spawn) * 10) / 10;
       $('.content').append([format('<table id="village_{0}">', i),
         '<tr>',
