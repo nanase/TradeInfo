@@ -132,7 +132,13 @@ table.connect td, table.connect th {
   display: inline-block;
   height: 0.8em;
   line-height: 0.8em;
-  width: 400px;
+  width: 100%;
+}
+
+.popgraph_text {
+  position: absolute;
+  font-size: 90%;
+  font-weight: bold;
 }
 
 .popgraph_adult {
