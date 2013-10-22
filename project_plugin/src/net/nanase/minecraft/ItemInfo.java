@@ -10,13 +10,11 @@ public class ItemInfo {
 
 		public byte c;
 		public short i;
-		public short d;
 		public String n;
 		public EnchantInfo[] e;
 
 		public boolean extract(NBTTagCompound item) {
 				this.c = item.getByte("Count");
-				this.d = item.getShort("Damage");
 				this.i = item.getShort("id");
 
 				Item[] items = Item.byId;

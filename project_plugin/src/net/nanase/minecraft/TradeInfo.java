@@ -26,6 +26,8 @@ public class TradeInfo extends JavaPlugin {
   private static FileConfiguration config;
   private static Logger log;
 
+  public static final String PluginDir = "plugins/TradeInfo/";
+
   public TradeInfo() {
     TradeInfo.TradeInfo = this;
   }
@@ -140,13 +142,13 @@ public class TradeInfo extends JavaPlugin {
 
     log.info("delay: " + config.getLong("delay"));
 
-    //new File(config.getString("output")).mkdirs();
+    new File(TradeInfo.PluginDir).mkdirs();
     return true;
   }
 
   private void createConfig() {
     config.set("output", "");
-    config.set("interval", 30000L);
+    config.set("interval", 3000L);
     config.set("delay", 0L);
     this.saveConfig();
 

@@ -67,8 +67,8 @@
           {
             var pos = format('({0}, {1}, {2})', v.c[0], v.c[1], v.c[2]);
             var distance = Math.sqrt(Math.pow(v.c[0] - data.s[0], 2.0) + Math.pow(v.c[1] - data.s[1], 2.0) + Math.pow(v.c[2] - data.s[2], 2.0));
-            var popular = Enumerable.From(data.r).Count('r => r.v == ' + i);
-            var adult = Enumerable.From(data.r).Count('r => r.a && r.v == ' + i);
+            var popular = Enumerable.From(v.r).Count();
+            var adult = Enumerable.From(v.r).Count('r => r.a');
             var adult_p = (adult / popular) * 100;
 
             $('.content').append([format('<table id="village_{0}">', i),
@@ -79,7 +79,7 @@
             setPopup($(format('#village_{0} tr div.popgraph', i)), getVillageStats(i));
           }
 
-          var villager = Enumerable.From(data.r).Where('v => v.a && v.r != null && v.v == ' + i).ToArray();
+          var villager = Enumerable.From(v.r).Where('v => v.a && v.r != null').ToArray();
 
           var list = '<table class="connect">';
 
