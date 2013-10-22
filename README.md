@@ -20,12 +20,18 @@ NetBeans 7.4 以降で開発しています。Eclipse での開発は別途変�
 
 ## 著作権
 
-このプラグインは表示部分に Fugue Icons を使用しております。ライセンス: CC BY 3.0
-
-Fugue Icons
+### Fugue Icons
 
 (C) 2013 Yusuke Kamiyamane. All rights reserved.
 
 These icons are licensed under a Creative Commons
 Attribution 3.0 License.
-<http://creativecommons.org/licenses/by/3.0/>
+http://creativecommons.org/licenses/by/3.0/
+
+
+### JSONIC
+
+Copyright (C) 2007-2012 Hidekatsu Izuno All right reserved.
+
+Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0
