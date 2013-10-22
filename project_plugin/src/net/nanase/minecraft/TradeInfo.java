@@ -148,7 +148,7 @@ public class TradeInfo extends JavaPlugin {
 
   private void createConfig() {
     config.set("output", "");
-    config.set("interval", 3000L);
+    config.set("interval", 6000L);
     config.set("delay", 0L);
     this.saveConfig();
 
