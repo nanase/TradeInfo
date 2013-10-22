@@ -3,6 +3,7 @@ package net.nanase.minecraft;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -94,7 +95,7 @@ public class TradeInfo extends JavaPlugin {
         }
         addClassPath(JarUtils.getJarUrl(lib));
       }
-    } catch (final Exception e) {
+    } catch (final IOException e) {
       e.printStackTrace();
     }
   }
@@ -106,7 +107,8 @@ public class TradeInfo extends JavaPlugin {
       final Method method = sysclass.getDeclaredMethod("addURL", new Class[]{URL.class});
       method.setAccessible(true);
       method.invoke(sysloader, new Object[]{url});
-    } catch (final Throwable t) {
+    } catch (final IllegalAccessException | IllegalArgumentException |
+            NoSuchMethodException | SecurityException | InvocationTargetException t) {
       t.printStackTrace();
       throw new IOException("Error adding " + url + " to system classloader");
     }
@@ -124,14 +126,12 @@ public class TradeInfo extends JavaPlugin {
 
     log.info("output: " + config.getString("output"));
 
-
     if (config.getLong("interval") < 0) {
       log.warning("更新間隔が不正です. 設定ファイルを確認してください.");
       return false;
     }
 
     log.info("interval: " + config.getLong("interval"));
-
 
     if (config.getLong("delay") < 0) {
       log.warning("ディレイ時間が不正です. 設定ファイルを確認してください.");
@@ -141,7 +141,6 @@ public class TradeInfo extends JavaPlugin {
     log.info("delay: " + config.getLong("delay"));
 
     //new File(config.getString("output")).mkdirs();
-
     return true;
   }
 
@@ -177,7 +176,7 @@ public class TradeInfo extends JavaPlugin {
               && (method.getParameterTypes()[0] == NBTTagCompound.class)) {
         try {
           method.invoke(object, compound);
-        } catch (Exception e) {
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
           e.printStackTrace();
         }
       }
