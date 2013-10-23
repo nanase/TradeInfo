@@ -16,6 +16,10 @@ function getIconPath(name, isBlock) {
   return format('style/{0}/{1}.png', (isBlock) ? 'blocks' : 'items', name);
 }
 
+function p(cond, value) {
+  return cond ? value : '';
+}
+
 function createItem(item) {
   if (!item)
   {
@@ -25,10 +29,10 @@ function createItem(item) {
     item_array[item_num] = item;
     return format('<div id="item_{0}" class="item{1}" style="background-image: url({2})">{3}{4}</div>',
             item_num++,
-            (item.e) ? ' item-enchant' : '',
+            p(item.e, ' item-enchant'),
             getIconPath(item.n, (item.i < 256)),
-            (item.c === 1) ? '' : item.c,
-            (item.e) ? 'E' : '');
+            p(item.c !== 1, item.c),
+            p(item.e, 'E'));
   }
 }
 
@@ -45,8 +49,8 @@ function getVillageStats(i) {
 }
 
 function getItemDescript(item) {
-  return format('<b><i>{0}</i></b> {1}<br />', item.n, (item.c === 1) ? '' : 'x' + item.c) +
-          ((item.e) ? Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />') : '');
+  return format('<b><i>{0}</i></b> {1}<br />', item.n, p(item.c !== 1, 'x' + item.c)) +
+          p(item.e, Enumerable.From(item.e).Select('e=>format("{0} Lv.{1}",enchants[e.i],e.l)').ToArray().join('<br />'));
 }
 
 function getDistance(a, b) {
@@ -65,9 +69,12 @@ function getPopgraph(village) {
 
 function getCoordinate(village) {
   var x = village.c[0], y = village.c[1], z = village.c[2];
-  return format('{3}({0}, {1}, {2}){4}', x, y, z,
-    (typeof(dynmap_addr) !== 'undefined') ? format('<a href="{0}&x={1}&y={2}&z={3}" target="_blank">', dynmap_addr, x, y, z) : '',
-    (typeof(dynmap_addr) !== 'undefined') ? '</a>' : '');
+
+  if (typeof (dynmap_addr) !== 'undefined')
+    return format('{3}({0}, {1}, {2}){4}', x, y, z,
+            format('<a href="{0}&x={1}&y={2}&z={3}" target="_blank">', dynmap_addr, x, y, z), '</a>');
+  else
+    return format('({0}, {1}, {2})', x, y, z);
 }
 
 function create() {
@@ -102,7 +109,7 @@ function create() {
       for (var k = 0; k < r.r.length; k++) {
         var t = r.r[k];
         list += format('<td{0}>{1}{2}<div class="arrow">{4} / {5}</div>{3}</td>',
-                (t.u === t.m) ? ' class="uses_max"' : '',
+                p(t.u === t.m, ' class="uses_max"'),
                 createItem(t.a),
                 createItem(t.b),
                 createItem(t.s),
@@ -144,7 +151,7 @@ function update() {
     item_array = new Array();
     $('#updateTime').text(new Date(source.t).toLocaleTimeString());
     create();
-    
+
     setTimeout(update, 1000 * 60 * 5);
   });
 }
@@ -154,6 +161,6 @@ $(function() {
     if (popuping)
       $('.popup').css({left: e.pageX + 16 + 'px', top: e.pageY + 16 + 'px'});
   });
-  
+
   update();
 });
