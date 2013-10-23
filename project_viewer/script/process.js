@@ -66,8 +66,8 @@ function getPopgraph(village) {
 function getCoordinate(village) {
   var x = village.c[0], y = village.c[1], z = village.c[2];
   return format('{3}({0}, {1}, {2}){4}', x, y, z,
-    (dynmap_addr) ? format('<a href="{0}&x={1}&y={2}&z={3}" target="_blank">', dynmap_addr, x, y, z) : '',
-    (dynmap_addr) ? '</a>' : '');
+    (typeof(dynmap_addr) !== 'undefined') ? format('<a href="{0}&x={1}&y={2}&z={3}" target="_blank">', dynmap_addr, x, y, z) : '',
+    (typeof(dynmap_addr) !== 'undefined') ? '</a>' : '');
 }
 
 function create() {
