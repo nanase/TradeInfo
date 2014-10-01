@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TradeInfo">
+    <output-path>$PROJECT_DIR$/out/artifacts/TradeInfo</output-path>
+    <root id="archive" name="TradeInfo.jar">
+      <element id="module-output" name="project_plugin" />
+    </root>
+  </artifact>
+</component>
