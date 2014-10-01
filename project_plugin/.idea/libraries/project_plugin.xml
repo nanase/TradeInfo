@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="project_plugin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jsonic-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/bukkit-1.7.9-R0.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/craftbukkit-1.7.9-R0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/bukkit-1.7.9-R0.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/craftbukkit-1.7.9-R0.2.jar!/" />
+    </SOURCES>
+  </library>
+</component>
