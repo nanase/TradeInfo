@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
-import net.minecraft.server.v1_6_R3.NBTTagCompound;
+import net.minecraft.server.v1_7_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
@@ -24,7 +24,8 @@ public class TradeInfo extends JavaPlugin {
   private static TradeInfo TradeInfo;
   private int schedulerNum = -1;
   private static FileConfiguration config;
-  private static Logger log;
+
+  static Logger log;
 
   public static final String PluginDir = "plugins/TradeInfo/";
 

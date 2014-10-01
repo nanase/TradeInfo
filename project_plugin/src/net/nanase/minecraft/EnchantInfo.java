@@ -1,6 +1,6 @@
 package net.nanase.minecraft;
 
-import net.minecraft.server.v1_6_R3.NBTTagCompound;
+import net.minecraft.server.v1_7_R3.NBTTagCompound;
 
 public class EnchantInfo {
 

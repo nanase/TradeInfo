@@ -3,9 +3,9 @@ package net.nanase.minecraft;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.server.v1_6_R3.ChunkCoordinates;
-import net.minecraft.server.v1_6_R3.EntityVillager;
-import net.minecraft.server.v1_6_R3.Village;
+import net.minecraft.server.v1_7_R3.ChunkCoordinates;
+import net.minecraft.server.v1_7_R3.EntityVillager;
+import net.minecraft.server.v1_7_R3.Village;
 
 public class VillageInfo {
 

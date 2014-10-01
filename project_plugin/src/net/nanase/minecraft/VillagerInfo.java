@@ -2,9 +2,9 @@ package net.nanase.minecraft;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.server.v1_6_R3.EntityVillager;
-import net.minecraft.server.v1_6_R3.NBTTagCompound;
-import net.minecraft.server.v1_6_R3.NBTTagList;
+import net.minecraft.server.v1_7_R3.EntityVillager;
+import net.minecraft.server.v1_7_R3.NBTTagCompound;
+import net.minecraft.server.v1_7_R3.NBTTagList;
 
 public class VillagerInfo {
 
@@ -25,8 +25,11 @@ public class VillagerInfo {
         return true;
       }
 
-      NBTTagList recipesTag = offerTag.getList("Recipes");
+      NBTTagList recipesTag = offerTag.getList("Recipes", 10);
       int size = recipesTag.size();
+
+      //TradeInfo.log.warning("Extracting: " + size );
+
       List<RecipeInfo> recipes = new ArrayList<>(size);
 
       for (int i = 0; i < size; i++) {

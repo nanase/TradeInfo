@@ -12,13 +12,13 @@ import java.util.logging.Level;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
 import net.arnx.jsonic.TypeReference;
-import net.minecraft.server.v1_6_R3.EntityVillager;
-import net.minecraft.server.v1_6_R3.Village;
+import net.minecraft.server.v1_7_R3.EntityVillager;
+import net.minecraft.server.v1_7_R3.Village;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftVillager;
+import org.bukkit.craftbukkit.v1_7_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftVillager;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
