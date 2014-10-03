@@ -27,10 +27,7 @@ public class RecipeInfo {
     }
 
     this.s = new ItemInfo();
-    if (!this.s.extract(recipe.getCompound("sell"))) {
-      return false;
-    }
 
-    return true;
+    return this.s.extract(recipe.getCompound("sell"));
   }
 }
