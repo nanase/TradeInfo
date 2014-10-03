@@ -28,7 +28,7 @@ public class ItemInfo {
 								List<EnchantInfo> enchants = new ArrayList<>(size);
 
 								for (int j = 0; j < size; j++) {
-										NBTTagCompound ench = (NBTTagCompound) enchsTag.get(j);
+										NBTTagCompound ench = enchsTag.get(j);
 										EnchantInfo enchant = new EnchantInfo();
 
 										if (!enchant.extract(ench)) {
@@ -46,7 +46,7 @@ public class ItemInfo {
                             List<EnchantInfo> enchants = new ArrayList<>(size);
 
                             for (int j = 0; j < size; j++) {
-                                NBTTagCompound ench = (NBTTagCompound) enchsTag.get(j);
+                                NBTTagCompound ench = enchsTag.get(j);
                                 EnchantInfo enchant = new EnchantInfo();
 
                                 if (!enchant.extract(ench)) {
