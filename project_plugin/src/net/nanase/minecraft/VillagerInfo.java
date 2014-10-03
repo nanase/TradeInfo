@@ -28,12 +28,10 @@ public class VillagerInfo {
       NBTTagList recipesTag = offerTag.getList("Recipes", 10);
       int size = recipesTag.size();
 
-      //TradeInfo.log.warning("Extracting: " + size );
-
       List<RecipeInfo> recipes = new ArrayList<>(size);
 
       for (int i = 0; i < size; i++) {
-        NBTTagCompound recipeTag = (NBTTagCompound) recipesTag.get(i);
+        NBTTagCompound recipeTag = recipesTag.get(i);
         RecipeInfo recipe = new RecipeInfo();
 
         if (!recipe.extract(recipeTag)) {
