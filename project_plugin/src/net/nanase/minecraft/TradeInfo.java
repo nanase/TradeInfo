@@ -30,13 +30,13 @@ public class TradeInfo extends JavaPlugin {
     public static final String PluginDir = "plugins/TradeInfo/";
 
     public TradeInfo() {
-        TradeInfo.TradeInfo = this;
+        TradeInfo = this;
     }
 
     @Override
     public void onEnable() {
-        TradeInfo.config = this.getConfig();
-        TradeInfo.log = this.getLogger();
+        config = this.getConfig();
+        log = this.getLogger();
 
         if (!this.checkConfig()) {
             return;
