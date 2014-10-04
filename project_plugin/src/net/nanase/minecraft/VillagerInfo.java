@@ -7,11 +7,31 @@ import net.minecraft.server.v1_7_R3.NBTTagList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 村人の情報を格納します。
+ */
 public class VillagerInfo {
+    /**
+     * 村人が大人であるかの真偽値。
+     */
     public boolean a;
+
+    /**
+     * 村人の職業を表す数値。
+     */
     public int p;
+
+    /**
+     * 取引内容の配列。
+     */
     public RecipeInfo[] r;
 
+    /**
+     * オブジェクトから情報を抽出します。
+     *
+     * @param villager 抽出される EntityVillager オブジェクト。
+     * @return 抽出に成功した場合は true、 失敗した場合はfalse。
+     */
     public boolean extract(EntityVillager villager) {
         this.a = (villager.getAge() >= 0);
         this.p = villager.getProfession();
@@ -47,12 +67,25 @@ public class VillagerInfo {
         return true;
     }
 
+    /**
+     * 村人が村の有効範囲内に存在しているかを検査します。
+     *
+     * @param village 対象となる村を表す VillageInfo オブジェクト。
+     * @param villager 対象となる村人を表す EntityVillager オブジェクト。
+     * @return 村人が有効範囲内にいる場合は true、それ以外の時 false。
+     */
     public static boolean checkInhabitant(VillageInfo village, EntityVillager villager) {
         return Math.sqrt(pow2(village.c[0] - villager.locX)
                 + pow2(village.c[1] - villager.locY)
                 + pow2(village.c[2] - villager.locZ)) < (double) village.s;
     }
 
+    /**
+     * 指定された数値の平方数を求めます。
+     *
+     * @param x 数値。
+     * @return パラメータ x の平方数。
+     */
     private static double pow2(double x) {
         return x * x;
     }
