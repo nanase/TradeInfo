@@ -42,15 +42,15 @@ public class RecipeInfo {
         this.u = recipe.getInt("uses");
 
         this.a = new ItemInfo();
-        if (!this.a.extract(recipe.getCompound("buy"))) {
+
+        if (!this.a.extract(recipe.getCompound("buy")))
             return false;
-        }
 
         if (recipe.hasKey("buyB")) {
             this.b = new ItemInfo();
-            if (!this.b.extract(recipe.getCompound("buyB"))) {
+
+            if (!this.b.extract(recipe.getCompound("buyB")))
                 return false;
-            }
         }
 
         this.s = new ItemInfo();
