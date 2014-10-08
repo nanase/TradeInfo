@@ -51,12 +51,8 @@ public class VillageInfo {
     }
 
     public static boolean isSameVillage(VillageInfo a, VillageInfo b) {
-        return (Math.sqrt(pow2(a.c[0] - b.c[0])
-                + pow2(a.c[1] - b.c[1])
-                + pow2(a.c[2] - b.c[2])) < 64.0);
-    }
-
-    private static double pow2(double x) {
-        return x * x;
+        return (Math.sqrt(Utils.pow2(a.c[0] - b.c[0])
+                + Utils.pow2(a.c[1] - b.c[1])
+                + Utils.pow2(a.c[2] - b.c[2])) < 64.0);
     }
 }

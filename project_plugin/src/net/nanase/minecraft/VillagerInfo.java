@@ -75,18 +75,8 @@ public class VillagerInfo {
      * @return 村人が有効範囲内にいる場合は true、それ以外の時 false。
      */
     public static boolean checkInhabitant(VillageInfo village, EntityVillager villager) {
-        return Math.sqrt(pow2(village.c[0] - villager.locX)
-                + pow2(village.c[1] - villager.locY)
-                + pow2(village.c[2] - villager.locZ)) < (double) village.s;
-    }
-
-    /**
-     * 指定された数値の平方数を求めます。
-     *
-     * @param x 数値。
-     * @return パラメータ x の平方数。
-     */
-    private static double pow2(double x) {
-        return x * x;
+        return Math.sqrt(Utils.pow2(village.c[0] - villager.locX)
+                + Utils.pow2(village.c[1] - villager.locY)
+                + Utils.pow2(village.c[2] - villager.locZ)) < (double) village.s;
     }
 }
