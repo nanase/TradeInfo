@@ -23,15 +23,15 @@ public class ItemInfo {
             NBTTagCompound tag = item.getCompound("tag");
             if (tag.hasKey("ench")) {
 
-                NBTTagList enchsTag = tag.getList("ench", 10);
-                int size = enchsTag.size();
+                NBTTagList enchantmentsTag = tag.getList("ench", 10);
+                int size = enchantmentsTag.size();
                 List<EnchantInfo> enchants = new ArrayList<>(size);
 
                 for (int j = 0; j < size; j++) {
-                    NBTTagCompound ench = enchsTag.get(j);
+                    NBTTagCompound enchantment = enchantmentsTag.get(j);
                     EnchantInfo enchant = new EnchantInfo();
 
-                    if (!enchant.extract(ench)) {
+                    if (!enchant.extract(enchantment)) {
                         return false;
                     }
 
@@ -41,15 +41,15 @@ public class ItemInfo {
                 this.e = enchants.toArray(new EnchantInfo[size]);
             } else if (tag.hasKey("StoredEnchantments")) {
 
-                NBTTagList enchsTag = tag.getList("StoredEnchantments", 10);
-                int size = enchsTag.size();
+                NBTTagList enchantmentsTag = tag.getList("StoredEnchantments", 10);
+                int size = enchantmentsTag.size();
                 List<EnchantInfo> enchants = new ArrayList<>(size);
 
                 for (int j = 0; j < size; j++) {
-                    NBTTagCompound ench = enchsTag.get(j);
+                    NBTTagCompound enchantment = enchantmentsTag.get(j);
                     EnchantInfo enchant = new EnchantInfo();
 
-                    if (!enchant.extract(ench)) {
+                    if (!enchant.extract(enchantment)) {
                         return false;
                     }
 
