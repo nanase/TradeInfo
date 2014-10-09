@@ -47,9 +47,8 @@ public class VillagerInfo {
         if (villagerTag.hasKey("Offers")) {
             NBTTagCompound offerTag = villagerTag.getCompound("Offers");
 
-            if (!offerTag.hasKey("Recipes")) {
+            if (!offerTag.hasKey("Recipes"))
                 return true;
-            }
 
             NBTTagList recipesTag = offerTag.getList("Recipes", 10);
             int size = recipesTag.size();
@@ -60,9 +59,8 @@ public class VillagerInfo {
                 NBTTagCompound recipeTag = recipesTag.get(i);
                 RecipeInfo recipe = new RecipeInfo();
 
-                if (!recipe.extract(recipeTag)) {
+                if (!recipe.extract(recipeTag))
                     return false;
-                }
 
                 recipes.add(recipe);
             }
