@@ -22,6 +22,11 @@ public class VillagerInfo {
     public int p;
 
     /**
+     * 村人の名前を表す文字列。
+     */
+    public String n;
+
+    /**
      * 取引内容の配列。
      */
     public RecipeInfo[] r;
@@ -35,6 +40,7 @@ public class VillagerInfo {
     public boolean extract(EntityVillager villager) {
         this.a = (villager.getAge() >= 0);
         this.p = villager.getProfession();
+        this.n = villager.getCustomName();
 
         NBTTagCompound villagerTag = TradeInfo.getTag(villager);
 
