@@ -4,7 +4,6 @@ import net.minecraft.server.v1_7_R3.ChunkCoordinates;
 import net.minecraft.server.v1_7_R3.EntityVillager;
 import net.minecraft.server.v1_7_R3.Village;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,7 +17,8 @@ public class VillageInfo {
 
     public boolean extract(Village village, List<EntityVillager> villagers) {
         ChunkCoordinates center = village.getCenter();
-        List<VillagerInfo> info_villagers = new ArrayList<>();
+        int size = villagers.size();
+        this.r = new VillagerInfo[size];
 
         this.c = new int[]{center.x, center.y, center.z};
         this.i = this.createId();
@@ -26,21 +26,15 @@ public class VillageInfo {
         this.d = village.getDoorCount();
         this.p = village.getPopulationCount();
 
-        for (EntityVillager villager : villagers) {
-            VillagerInfo villagerInfo = new VillagerInfo();
+        for (int i = 0; i < size; i++) {
+            this.r[i] = new VillagerInfo();
 
-            if (!VillagerInfo.checkInhabitant(this, villager)) {
+            if (!VillagerInfo.checkInhabitant(this, villagers.get(i)))
                 continue;
-            }
 
-            if (!villagerInfo.extract(villager)) {
+            if (!this.r[i].extract(villagers.get(i)))
                 return false;
-            }
-
-            info_villagers.add(villagerInfo);
         }
-
-        this.r = info_villagers.toArray(new VillagerInfo[info_villagers.size()]);
 
         return true;
     }
