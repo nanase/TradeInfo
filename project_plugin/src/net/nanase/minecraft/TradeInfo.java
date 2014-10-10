@@ -21,17 +21,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TradeInfo extends JavaPlugin {
-    private static TradeInfo TradeInfo;
     private int schedulerNum = -1;
     private static FileConfiguration config;
 
     static Logger log;
 
     public static final String PluginDir = "plugins/TradeInfo/";
-
-    public TradeInfo() {
-        TradeInfo = this;
-    }
 
     @Override
     public void onEnable() {
@@ -109,7 +104,7 @@ public class TradeInfo extends JavaPlugin {
         try {
             final Method method = sysclass.getDeclaredMethod("addURL", new Class[]{URL.class});
             method.setAccessible(true);
-            method.invoke(sysloader, new Object[]{url});
+            method.invoke(sysloader, url);
         } catch (final IllegalAccessException | IllegalArgumentException |
                 NoSuchMethodException | SecurityException | InvocationTargetException t) {
             t.printStackTrace();
@@ -143,7 +138,7 @@ public class TradeInfo extends JavaPlugin {
 
         log.info("delay: " + config.getLong("delay"));
 
-        new File(TradeInfo.PluginDir).mkdirs();
+        new File(PluginDir).mkdirs();
         return true;
     }
 
@@ -168,10 +163,10 @@ public class TradeInfo extends JavaPlugin {
         return null;
     }
 
-    public static <T extends Object> NBTTagCompound getTag(T object) {
+    public static <T> NBTTagCompound getTag(T object) {
         NBTTagCompound compound = new NBTTagCompound();
 
-        Class<? extends Object> clazz = object.getClass();
+        Class<?> clazz = object.getClass();
         Method[] methods = clazz.getMethods();
         for (Method method : methods) {
             if (("b".equals(method.getName()))
