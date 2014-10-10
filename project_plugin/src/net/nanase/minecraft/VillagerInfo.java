@@ -4,9 +4,6 @@ import net.minecraft.server.v1_7_R3.EntityVillager;
 import net.minecraft.server.v1_7_R3.NBTTagCompound;
 import net.minecraft.server.v1_7_R3.NBTTagList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 村人の情報を格納します。
  */
@@ -52,20 +49,14 @@ public class VillagerInfo {
 
             NBTTagList recipesTag = offerTag.getList("Recipes", 10);
             int size = recipesTag.size();
-
-            List<RecipeInfo> recipes = new ArrayList<>(size);
+            this.r = new RecipeInfo[size];
 
             for (int i = 0; i < size; i++) {
-                NBTTagCompound recipeTag = recipesTag.get(i);
-                RecipeInfo recipe = new RecipeInfo();
+                this.r[i] = new RecipeInfo();
 
-                if (!recipe.extract(recipeTag))
+                if (!this.r[i].extract(recipesTag.get(i)))
                     return false;
-
-                recipes.add(recipe);
             }
-
-            this.r = recipes.toArray(new RecipeInfo[size]);
         }
 
         return true;
@@ -74,7 +65,7 @@ public class VillagerInfo {
     /**
      * 村人が村の有効範囲内に存在しているかを検査します。
      *
-     * @param village 対象となる村を表す VillageInfo オブジェクト。
+     * @param village  対象となる村を表す VillageInfo オブジェクト。
      * @param villager 対象となる村人を表す EntityVillager オブジェクト。
      * @return 村人が有効範囲内にいる場合は true、それ以外の時 false。
      */
