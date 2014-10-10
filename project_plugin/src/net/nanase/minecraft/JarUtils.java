@@ -43,7 +43,7 @@ public class JarUtils {
         return false;
     }
 
-    private final static void copyInputStream(final InputStream in,
+    private static void copyInputStream(final InputStream in,
                                               final OutputStream out) throws IOException {
         try {
             final byte[] buff = new byte[4096];
