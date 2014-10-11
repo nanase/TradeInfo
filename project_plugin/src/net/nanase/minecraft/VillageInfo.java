@@ -39,7 +39,7 @@ public class VillageInfo {
         return true;
     }
 
-    public long createId() {
+    private long createId() {
         int a = new Random(this.c[0]).nextInt(), b = new Random(this.c[1]).nextInt(), d = new Random(this.c[2]).nextInt();
         return (long) a << (d % 32) ^ (long) b << (a % 32) ^ (long) d << (b % 32);
     }
