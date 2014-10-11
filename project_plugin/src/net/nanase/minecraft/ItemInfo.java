@@ -21,43 +21,30 @@ public class ItemInfo {
 
         if (item.hasKey("tag")) {
             NBTTagCompound tag = item.getCompound("tag");
-            if (tag.hasKey("ench")) {
+            String targetKey;
 
-                NBTTagList enchantmentsTag = tag.getList("ench", 10);
-                int size = enchantmentsTag.size();
-                List<EnchantInfo> enchants = new ArrayList<>(size);
+            if (tag.hasKey("ench"))
+                targetKey = "ench";
+            else if (tag.hasKey("StoredEnchantments"))
+                targetKey = "StoredEnchantments";
+            else
+                return false;
 
-                for (int j = 0; j < size; j++) {
-                    NBTTagCompound enchantment = enchantmentsTag.get(j);
-                    EnchantInfo enchant = new EnchantInfo();
+            NBTTagList enchantmentsTag = tag.getList(targetKey, 10);
+            int size = enchantmentsTag.size();
+            List<EnchantInfo> enchants = new ArrayList<>(size);
 
-                    if (!enchant.extract(enchantment)) {
-                        return false;
-                    }
+            for (int j = 0; j < size; j++) {
+                NBTTagCompound enchantment = enchantmentsTag.get(j);
+                EnchantInfo enchant = new EnchantInfo();
 
-                    enchants.add(enchant);
-                }
+                if (!enchant.extract(enchantment))
+                    return false;
 
-                this.e = enchants.toArray(new EnchantInfo[size]);
-            } else if (tag.hasKey("StoredEnchantments")) {
-
-                NBTTagList enchantmentsTag = tag.getList("StoredEnchantments", 10);
-                int size = enchantmentsTag.size();
-                List<EnchantInfo> enchants = new ArrayList<>(size);
-
-                for (int j = 0; j < size; j++) {
-                    NBTTagCompound enchantment = enchantmentsTag.get(j);
-                    EnchantInfo enchant = new EnchantInfo();
-
-                    if (!enchant.extract(enchantment)) {
-                        return false;
-                    }
-
-                    enchants.add(enchant);
-                }
-
-                this.e = enchants.toArray(new EnchantInfo[size]);
+                enchants.add(enchant);
             }
+
+            this.e = enchants.toArray(new EnchantInfo[size]);
         }
 
         return true;
