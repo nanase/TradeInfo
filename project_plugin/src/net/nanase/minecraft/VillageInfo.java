@@ -42,6 +42,11 @@ public class VillageInfo {
     public VillagerInfo[] r;
 
     /**
+     * 村IDを生成するための数値。
+     */
+    private static long id = 0L;
+
+    /**
      * オブジェクトから情報を抽出します。
      *
      * @param village   抽出される Village オブジェクト。
@@ -78,8 +83,7 @@ public class VillageInfo {
      * @return 村のID。
      */
     private long createId() {
-        int a = new Random(this.c[0]).nextInt(), b = new Random(this.c[1]).nextInt(), d = new Random(this.c[2]).nextInt();
-        return (long) a << (d % 32) ^ (long) b << (a % 32) ^ (long) d << (b % 32);
+        return ++id;
     }
 
     /**
