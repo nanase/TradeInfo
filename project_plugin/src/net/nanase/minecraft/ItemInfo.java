@@ -7,12 +7,36 @@ import net.minecraft.server.v1_7_R3.NBTTagList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * アイテムの情報を格納します。
+ */
 public class ItemInfo {
+    /**
+     * アイテムの数量。
+     */
     public byte c;
+
+    /**
+     * アイテムのID。
+     */
     public short i;
+
+    /**
+     * アイテムの名前。
+     */
     public String n;
+
+    /**
+     * アイテムに適用されたエンチャントのリスト。
+     */
     public EnchantInfo[] e;
 
+    /**
+     * オブジェクトから情報を抽出します。
+     *
+     * @param item 抽出される NBTTagCompound オブジェクト。
+     * @return 抽出に成功した場合は true、 失敗した場合はfalse。
+     */
     public boolean extract(NBTTagCompound item) {
         this.c = item.getByte("Count");
         this.i = item.getShort("id");
